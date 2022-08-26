@@ -1,0 +1,142 @@
+package com.restaurant.restaurant_app.ui;
+
+import com.restaurant.restaurant_app.controllers.MainController;
+import com.restaurant.restaurant_app.controllers.ModifiersController;
+import com.restaurant.restaurant_app.entities.FoodItem;
+import javafx.event.ActionEvent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+public class ModifierPopupGUI {
+    private MainController mainController;
+    private ModifiersController modifiersController;
+    private FoodItem foodItem;
+    private HBox topBtnsHBox;
+    private HBox bottomBtnsHBox;
+    private VBox popupVBox;
+    private ListView<String> toppingsListView;
+    private ToggleButton addBtn;
+    private ToggleButton deleteBtn;
+    private ToggleButton extraBtn;
+    private ToggleButton lightBtn;
+    private ToggleButton firstHalfBtn;
+    private ToggleButton secondHalfBtn;
+    private Button cancelBtn;
+    private Button submitBtn;
+    private Stage stage;
+
+    public ModifierPopupGUI(MainController mainController, FoodItem foodItem) {
+        this.mainController = mainController;
+        this.modifiersController = mainController.getModifiersController();
+        this.modifiersController.setModifierPopupGUI(this);
+        this.foodItem = foodItem;
+
+        this.stage = new Stage();
+        stage.setX(1920);
+        stage.setY(0);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(mainController.getMainGUI().getStage());
+        initializeButtons();
+
+        this.popupVBox = new VBox();
+        this.popupVBox.getChildren().add(this.topBtnsHBox);
+
+        this.toppingsListView = new ListView<>();
+        this.modifiersController.populateModifiables(toppingsListView, foodItem);
+        this.modifiersController.initializeModifiableCells();
+        this.popupVBox.getChildren().add(this.toppingsListView);
+        this.popupVBox.getChildren().add(this.bottomBtnsHBox);
+
+        Scene popupScene = new Scene(this.popupVBox, 1152, 1024);
+        popupScene.getStylesheets().add("/styles.css");
+        stage.setScene(popupScene);
+        stage.show();
+    }
+
+    private void initializeButtons() {
+        ToggleGroup modifiersToggleGroup = new ToggleGroup();
+        ToggleGroup halvesToggleGroup = new ToggleGroup();
+
+        this.addBtn = new ToggleButton("ADD");
+        this.addBtn.setToggleGroup(modifiersToggleGroup);
+
+        this.deleteBtn = new ToggleButton("86");
+        this.deleteBtn.setToggleGroup(modifiersToggleGroup);
+
+        this.extraBtn = new ToggleButton("EXTRA");
+        this.extraBtn.setToggleGroup(modifiersToggleGroup);
+
+        this.lightBtn = new ToggleButton("LIGHT");
+        this.lightBtn.setToggleGroup(modifiersToggleGroup);
+
+        this.firstHalfBtn = new ToggleButton("1st Half");
+        this.firstHalfBtn.setToggleGroup(halvesToggleGroup);
+
+        this.secondHalfBtn = new ToggleButton("2nd Half");
+        this.secondHalfBtn.setToggleGroup(halvesToggleGroup);
+
+        this.topBtnsHBox = new HBox();
+        this.topBtnsHBox.getChildren().addAll(this.addBtn, this.deleteBtn, this.extraBtn, this.lightBtn, this.firstHalfBtn, this.secondHalfBtn);
+
+        this.cancelBtn = new Button("CANCEL");
+        this.cancelBtn.setOnAction((ActionEvent event) -> {
+            this.stage.close();
+        });
+
+        this.submitBtn = new Button("DONE");
+        this.submitBtn.setOnAction((ActionEvent event) -> {
+            mainController.getCartController().addFoodItemToCartListView(foodItem);
+            this.stage.close();
+        });
+
+        this.bottomBtnsHBox = new HBox();
+        this.bottomBtnsHBox.getChildren().addAll(this.cancelBtn, this.submitBtn);
+    }
+
+    public FoodItem getFoodItem() {
+        return foodItem;
+    }
+
+    public ToggleButton getAddBtn() {
+        return addBtn;
+    }
+
+    public ToggleButton getDeleteBtn() {
+        return deleteBtn;
+    }
+
+    public ToggleButton getExtraBtn() {
+        return extraBtn;
+    }
+
+    public ToggleButton getLightBtn() {
+        return lightBtn;
+    }
+
+    public ToggleButton getFirstHalfBtn() {
+        return firstHalfBtn;
+    }
+
+    public ToggleButton getSecondHalfBtn() {
+        return secondHalfBtn;
+    }
+
+    public Button getCancelBtn() {
+        return cancelBtn;
+    }
+
+    public Button getSubmitBtn() {
+        return submitBtn;
+    }
+
+    public ListView<String> getToppingsListView() {
+        return toppingsListView;
+    }
+}
