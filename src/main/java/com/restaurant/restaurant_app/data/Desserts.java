@@ -21,6 +21,10 @@ public class Desserts implements Map<String, Dessert> {
         desserts.put(cinnabees.getName(), cinnabees);
     }
 
+    public static Map<String, Dessert> getDesserts() {
+        return desserts;
+    }
+
     @Override
     public int size() {
         return desserts.size();

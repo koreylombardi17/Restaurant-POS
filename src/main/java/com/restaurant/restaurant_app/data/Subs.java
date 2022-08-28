@@ -25,6 +25,10 @@ public class Subs implements Map<String, Sub> {
         subs.put(blt.getName(), blt);
     }
 
+    public static Map<String, Sub> getSubs() {
+        return subs;
+    }
+
     @Override
     public int size() {
         return subs.size();

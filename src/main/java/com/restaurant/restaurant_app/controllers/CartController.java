@@ -7,6 +7,10 @@ import com.restaurant.restaurant_app.service.Helper;
 import com.restaurant.restaurant_app.ui.CartGUI;
 import javafx.scene.control.ListCell;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 // TODO: Implement three cart buttons functionality
 public class CartController {
     private final MainController mainController;
@@ -35,7 +39,7 @@ public class CartController {
                     }
                 }
                 setOnMouseClicked(event -> {
-                    System.out.println("clicked");
+                    System.out.println("cart item clicked");
                 });
             }
         });
@@ -47,26 +51,25 @@ public class CartController {
 
     public void addFoodItemToCartListView(FoodItem foodItem) {
         this.cartGUI.getCartList().add(foodItem);
-        for (Topping topping : foodItem.getToppings()) {
-            if (topping.getModifier() != Enums.ToppingModifier.NORMAL) {
-                this.cartGUI.getCartList().add(topping);
-                System.out.println("Full Topping = " + topping);
-            }
-        }
-        for (Topping topping : foodItem.getFirstHalfToppings()) {
-            if (topping.getModifier() != Enums.ToppingModifier.NORMAL) {
-                this.cartGUI.getCartList().add(topping);
-                System.out.println("First half Topping = " + topping);
-            }
-        }
-        for (Topping topping : foodItem.getSecondHalfToppings()) {
-            if (topping.getModifier() != Enums.ToppingModifier.NORMAL) {
-                this.cartGUI.getCartList().add(topping);
-                System.out.println("Second Half Topping = " + topping);
-            }
-        }
+        addToppingsToCartListView(foodItem, Enums.ToppingType.FULL);
+        addToppingsToCartListView(foodItem, Enums.ToppingType.FIRSTHALF);
+        addToppingsToCartListView(foodItem, Enums.ToppingType.SECONDHALF);
         mainController.getCart().addFoodItem(foodItem);
         updateTotalLabel();
+    }
+
+    private void addToppingsToCartListView(FoodItem foodItem, Enums.ToppingType toppingType) {
+        Stream<Topping> toppingStream = null;
+        if (toppingType == Enums.ToppingType.FULL) {
+            toppingStream = foodItem.getToppings().stream();
+        } else if (toppingType == Enums.ToppingType.FIRSTHALF) {
+            toppingStream = foodItem.getFirstHalfToppings().stream();
+        } else if (toppingType == Enums.ToppingType.SECONDHALF) {
+            toppingStream = foodItem.getSecondHalfToppings().stream();
+        }
+        List<Topping> toppingList = toppingStream.filter(topping -> !(topping.getModifier().equals(Enums.ToppingModifier.NORMAL)))
+                .collect(Collectors.toList());
+        this.cartGUI.getCartList().addAll(toppingList);
     }
 
     public void setCartGUI(CartGUI cartGUI) {

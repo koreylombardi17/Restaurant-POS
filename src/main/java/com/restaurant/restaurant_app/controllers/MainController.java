@@ -7,6 +7,7 @@ import static com.restaurant.restaurant_app.enums.Enums.FoodType.PIZZA;
 
 public class MainController {
     private MainGUI mainGUI;
+    private DataController dataController;
     private CartController cartController;
     private FoodCategoriesController foodCategoriesController;
     private FoodItemsController foodItemsController;
@@ -15,6 +16,7 @@ public class MainController {
 
     public MainController() {
         this.mainGUI = null;
+        this.dataController = new DataController(this);
         this.cartController = new CartController(this);
         this.foodItemsController = new FoodItemsController(this);
         this.foodCategoriesController = new FoodCategoriesController(this);
@@ -28,6 +30,10 @@ public class MainController {
 
     public MainGUI getMainGUI() {
         return mainGUI;
+    }
+
+    public DataController getDataController() {
+        return dataController;
     }
 
     public CartController getCartController() {

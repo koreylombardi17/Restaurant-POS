@@ -25,6 +25,10 @@ public class Sides implements Map<String, Side> {
         sides.put(meatSauce.getName(), meatSauce);
     }
 
+    public static Map<String, Side> getSides() {
+        return sides;
+    }
+
     @Override
     public int size() {
         return sides.size();

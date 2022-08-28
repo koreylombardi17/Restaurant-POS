@@ -25,6 +25,10 @@ public class SpecialityPizzas implements Map<String, SpecialityPizza> {
         pizzas.put(bltPizza.getName(), bltPizza);
     }
 
+    public static Map<String, SpecialityPizza> getPizzas() {
+        return pizzas;
+    }
+
     @Override
     public int size() {
         return pizzas.size();

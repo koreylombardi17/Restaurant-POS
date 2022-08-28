@@ -1,6 +1,5 @@
 package com.restaurant.restaurant_app.controllers;
 
-import com.restaurant.restaurant_app.data.DAO;
 import com.restaurant.restaurant_app.entities.FoodItem;
 import com.restaurant.restaurant_app.entities.Topping;
 import com.restaurant.restaurant_app.enums.Enums;
@@ -40,7 +39,7 @@ public class ModifiersController {
                         setText(t);
                         setOnMouseClicked(event -> {
                             String toppingName = getText();
-                            Topping topping = DAO.searchTopping(toppingName);
+                            Topping topping = mainController.getDataController().searchTopping(toppingName);
                             if (getModifierPopupGUI().getAddBtn().isSelected()) {
                                 setModifier(topping, Enums.ToppingModifier.ADD);
                                 getModifierPopupGUI().getAddBtn().setSelected(false);

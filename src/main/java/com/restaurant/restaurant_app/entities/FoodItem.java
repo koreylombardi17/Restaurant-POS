@@ -1,12 +1,15 @@
 package com.restaurant.restaurant_app.entities;
 
 
+import com.restaurant.restaurant_app.enums.Enums;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class FoodItem {
     private String name;
     private double price;
+    private Enums.FoodType foodType;
     private List<Topping> toppings;
     private List<Topping> firstHalfToppings;
     private List<Topping> secondHalfToppings;
@@ -25,6 +28,14 @@ public abstract class FoodItem {
         this.toppings = new ArrayList<>();
         this.firstHalfToppings = new ArrayList<>();
         this.secondHalfToppings = new ArrayList<>();
+    }
+
+    public void setFoodType(Enums.FoodType foodType) {
+        this.foodType = foodType;
+    }
+
+    public Enums.FoodType getFoodType() {
+        return foodType;
     }
 
     public Topping getTopping(Topping topping) {

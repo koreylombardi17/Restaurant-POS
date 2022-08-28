@@ -25,6 +25,10 @@ public class Salads implements Map<String, Salad> {
         salads.put(greekSalad.getName(), greekSalad);
     }
 
+    public static Map<String, Salad> getSalads() {
+        return salads;
+    }
+
     @Override
     public int size() {
         return salads.size();

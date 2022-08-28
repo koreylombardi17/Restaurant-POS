@@ -2,6 +2,7 @@ package com.restaurant.restaurant_app.data;
 
 import com.restaurant.restaurant_app.entities.Pizza;
 import com.restaurant.restaurant_app.entities.Topping;
+import com.restaurant.restaurant_app.enums.Enums;
 
 import java.util.*;
 
@@ -48,6 +49,10 @@ public class Pizzas implements Map<String, Pizza> {
         pizzas.put(veggie.getName(), veggie);
         pizzas.put(meat.getName(), meat);
         pizzas.put(hawaiian.getName(), hawaiian);
+    }
+
+    public static Map<String, Pizza> getPizzas() {
+        return pizzas;
     }
 
     @Override

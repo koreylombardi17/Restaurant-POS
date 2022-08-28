@@ -39,6 +39,10 @@ public class Toppings implements Map<String, Topping> {
         toppings.put(pineapple.getName(), pineapple);
     }
 
+    public static Map<String, Topping> getToppings() {
+        return toppings;
+    }
+
     @Override
     public int size() {
         return toppings.size();

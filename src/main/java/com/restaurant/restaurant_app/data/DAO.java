@@ -1,47 +1,33 @@
 package com.restaurant.restaurant_app.data;
 
 import com.restaurant.restaurant_app.entities.FoodItem;
-import com.restaurant.restaurant_app.entities.Topping;
-import com.restaurant.restaurant_app.service.Helper;
+import com.restaurant.restaurant_app.enums.Enums;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 public class DAO {
-    public static Toppings toppings = new Toppings();
-    public static Appetizers appetizers = new Appetizers();
-    public static Wings wings = new Wings();
-    public static Salads salads = new Salads();
-    public static Pizzas pizzas = new Pizzas();
-    public static SpecialityPizzas specialityPizzas = new SpecialityPizzas();
-    public static Subs subs = new Subs();
-    public static Pastas pastas = new Pastas();
-    public static Sides sides = new Sides();
-    public static Desserts desserts = new Desserts();
+    public static final Toppings toppings = new Toppings();
+    public static final Appetizers appetizers = new Appetizers();
+    public static final Wings wings = new Wings();
+    public static final Salads salads = new Salads();
+    public static final Pizzas pizzas = new Pizzas();
+    public static final SpecialityPizzas specialityPizzas = new SpecialityPizzas();
+    public static final Subs subs = new Subs();
+    public static final Pastas pastas = new Pastas();
+    public static final Sides sides = new Sides();
+    public static final Desserts desserts = new Desserts();
+    public static final List<Map<String, ? extends FoodItem>> allFoodItems = new ArrayList<>(
+            List.of(toppings.getToppings(), appetizers.getApps(), wings.getWings(),
+                    salads.getSalads(), pizzas.getPizzas(), specialityPizzas.getPizzas(),
+                    subs.getSubs(), pastas.getPastas(), sides.getSides(), desserts.getDesserts()));
 
-    public static FoodItem searchFoodItem(String listItemsText) {
-        String foodItemsName = Helper.removeLeadingTabs(listItemsText);
-        if(appetizers.containsKey(foodItemsName)) {
-            return appetizers.get(foodItemsName);
-        } else if(wings.containsKey(foodItemsName)) {
-            return wings.get(foodItemsName);
-        } else if(salads.containsKey(foodItemsName)) {
-            return salads.get(foodItemsName);
-        } else if(pizzas.containsKey(foodItemsName)) {
-            return pizzas.get(foodItemsName);
-        } else if(specialityPizzas.containsKey(foodItemsName)) {
-            return specialityPizzas.get(foodItemsName);
-        } else if(subs.containsKey(foodItemsName)) {
-            return subs.get(foodItemsName);
-        } else if(pastas.containsKey(foodItemsName)) {
-            return pastas.get(foodItemsName);
-        } else if(sides.containsKey(foodItemsName)) {
-            return sides.get(foodItemsName);
-        } else if(desserts.containsKey(foodItemsName)) {
-            return desserts.get(foodItemsName);
-        } else return null;
-    }
-
-    public static Topping searchTopping(String toppingsName) {
-        if(toppings.containsKey(toppingsName)) {
-            return toppings.get(toppingsName);
-        } else return null;
+    public static Collection<? extends FoodItem> getFoodItemsByCategory(Enums.FoodType foodType) {
+        return allFoodItems.stream()
+                .filter(map -> map.values().stream().toList().get(0).getFoodType().equals(foodType))
+                .toList()
+                .get(0).values();
     }
 }

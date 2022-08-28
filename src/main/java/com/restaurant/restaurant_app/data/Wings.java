@@ -25,6 +25,10 @@ public class Wings implements Map<String, Wing> {
         wings.put(lemonPepper.getName(), lemonPepper);
     }
 
+    public static Map<String, Wing> getWings() {
+        return wings;
+    }
+
     @Override
     public int size() {
         return wings.size();

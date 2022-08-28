@@ -11,6 +11,11 @@ public class Enums {
         PASTA,
         SIDE,
         DESSERT,
+        TOPPING
+    }
+
+    public enum ToppingType {
+        FULL, FIRSTHALF, SECONDHALF
     }
 
     public enum ToppingModifier {
@@ -20,4 +25,5 @@ public class Enums {
         LIGHT,
         NORMAL
     }
+
 }

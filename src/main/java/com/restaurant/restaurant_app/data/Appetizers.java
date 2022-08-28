@@ -1,6 +1,7 @@
 package com.restaurant.restaurant_app.data;
 
 import com.restaurant.restaurant_app.entities.Appetizer;
+import com.restaurant.restaurant_app.enums.Enums;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -25,6 +26,10 @@ public class Appetizers implements Map<String, Appetizer> {
         apps.put(cheeseSticks.getName(), cheeseSticks);
         apps.put(meatballApp.getName(), meatballApp);
         apps.put(sausageApp.getName(), sausageApp);
+    }
+
+    public static Map<String, Appetizer> getApps() {
+        return apps;
     }
 
     @Override

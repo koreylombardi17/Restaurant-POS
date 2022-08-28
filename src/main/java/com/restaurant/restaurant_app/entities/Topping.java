@@ -8,11 +8,13 @@ public class Topping extends FoodItem implements Cloneable{
     private Enums.ToppingModifier modifier;
     public Topping(String name) {
         super(name);
+        setFoodType(Enums.FoodType.TOPPING);
         this.modifier = NORMAL;
         super.setToppings(null);
     }
     public Topping(String name, double price) {
         super(name, price);
+        setFoodType(Enums.FoodType.TOPPING);
         this.modifier = NORMAL;
         super.setToppings(null);
     }

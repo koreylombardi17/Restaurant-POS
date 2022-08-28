@@ -25,6 +25,10 @@ public class Pastas implements Map<String, Pasta> {
         pastas.put(cheeseRavioli.getName(), cheeseRavioli);
     }
 
+    public static Map<String, Pasta> getPastas() {
+        return pastas;
+    }
+
     @Override
     public int size() {
         return pastas.size();
