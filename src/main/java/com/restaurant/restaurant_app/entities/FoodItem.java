@@ -6,7 +6,7 @@ import com.restaurant.restaurant_app.enums.Enums;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class FoodItem {
+public abstract class FoodItem implements Cloneable{
     private String name;
     private double price;
     private Enums.FoodType foodType;
@@ -100,5 +100,76 @@ public abstract class FoodItem {
 
     public void setToppings(List<Topping> toppings) {
         this.toppings = toppings;
+    }
+
+    public void setFirstHalfToppings(List<Topping> firstHalfToppings) {
+        this.firstHalfToppings = firstHalfToppings;
+    }
+
+    public void setSecondHalfToppings(List<Topping> secondHalfToppings) {
+        this.secondHalfToppings = secondHalfToppings;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        FoodItem clone = (FoodItem) super.clone();
+        if (toppings != null) {
+            cloneToppings(clone);
+            cloneFirstHalfToppings(clone);
+            cloneSecondHalfToppings(clone);
+        } else {
+            clone.setToppings(null);
+            clone.setFirstHalfToppings(null);
+            clone.setSecondHalfToppings(null);
+        }
+        return clone;
+    }
+
+    private void cloneToppings(FoodItem clone) {
+        List<Topping> toppingsList= new ArrayList<>();
+        toppings.forEach(topping -> {
+            try {
+                toppingsList.add((Topping) topping.clone());
+            } catch (CloneNotSupportedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        clone.setToppings(toppingsList);
+    }
+
+    private void cloneFirstHalfToppings(FoodItem clone) {
+        List<Topping> toppingsList= new ArrayList<>();
+        firstHalfToppings.forEach(topping -> {
+            try {
+                toppingsList.add((Topping) topping.clone());
+            } catch (CloneNotSupportedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        clone.setFirstHalfToppings(toppingsList);
+    }
+
+    private void cloneSecondHalfToppings(FoodItem clone) {
+        List<Topping> toppingsList= new ArrayList<>();
+        secondHalfToppings.forEach(topping -> {
+            try {
+                toppingsList.add((Topping) topping.clone());
+            } catch (CloneNotSupportedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        clone.setSecondHalfToppings(toppingsList);
+    }
+
+    @Override
+    public String toString() {
+        return "FoodItem{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", foodType=" + foodType +
+                ", toppings=" + toppings +
+                ", firstHalfToppings=" + firstHalfToppings +
+                ", secondHalfToppings=" + secondHalfToppings +
+                '}';
     }
 }

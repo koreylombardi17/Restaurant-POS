@@ -39,7 +39,12 @@ public class ModifiersController {
                         setText(t);
                         setOnMouseClicked(event -> {
                             String toppingName = getText();
-                            Topping topping = mainController.getDataController().searchTopping(toppingName);
+                            Topping topping = null;
+                            try {
+                                topping = DataController.searchTopping(toppingName);
+                            } catch (CloneNotSupportedException e) {
+                                throw new RuntimeException(e);
+                            }
                             if (getModifierPopupGUI().getAddBtn().isSelected()) {
                                 setModifier(topping, Enums.ToppingModifier.ADD);
                                 getModifierPopupGUI().getAddBtn().setSelected(false);

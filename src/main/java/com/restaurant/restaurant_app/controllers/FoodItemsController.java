@@ -34,7 +34,12 @@ public class FoodItemsController {
                         setText(t);
                         setOnMouseClicked(event -> {
                             String itemName = getText();
-                            FoodItem foodItem = mainController.getDataController().searchFoodItem(itemName);
+                            FoodItem foodItem = null;
+                            try {
+                                foodItem = mainController.getDataController().searchFoodItem(itemName);
+                            } catch (CloneNotSupportedException e) {
+                                throw new RuntimeException(e);
+                            }
                             new ModifierPopupGUI(mainController, foodItem);
                         });
                     }

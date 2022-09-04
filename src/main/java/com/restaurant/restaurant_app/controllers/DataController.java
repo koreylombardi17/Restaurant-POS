@@ -16,18 +16,18 @@ public class DataController {
         this.mainController = mainController;
     }
 
-    public FoodItem searchFoodItem(String foodListItemString) {
+    public static FoodItem searchFoodItem(String foodListItemString) throws CloneNotSupportedException {
         String foodItemStr = Helper.removeLeadingTabs(foodListItemString);
         List<Map<String, ? extends FoodItem>> foodCategoryList = DAO.allFoodItems.stream()
                 .filter(foodCategory -> foodCategory.containsKey(foodItemStr))
                 .collect(Collectors.toList());
-        FoodItem foodItem = foodCategoryList.get(0).get(foodItemStr);
-        return foodItem;
+        FoodItem clone = (FoodItem) foodCategoryList.get(0).get(foodItemStr).clone();
+        return clone;
     }
 
-    public Topping searchTopping(String toppingsName) {
-        if (DAO.toppings.containsKey(toppingsName)) {
-            return DAO.toppings.get(toppingsName);
+    public static Topping searchTopping(String toppingName) throws CloneNotSupportedException {
+        if (DAO.toppings.containsKey(toppingName)) {
+            return (Topping) DAO.toppings.get(toppingName).clone();
         } else return null;
     }
 }

@@ -18,12 +18,11 @@ public class Enums {
         FULL, FIRSTHALF, SECONDHALF
     }
 
-    public enum ToppingModifier {
+    public enum ToppingModifier implements Cloneable{
         ADD,
         REMOVE,
         EXTRA,
         LIGHT,
         NORMAL
     }
-
 }

@@ -1,10 +1,12 @@
 package com.restaurant.restaurant_app.data;
 
+import com.restaurant.restaurant_app.controllers.DataController;
 import com.restaurant.restaurant_app.entities.Pizza;
-import com.restaurant.restaurant_app.entities.Topping;
-import com.restaurant.restaurant_app.enums.Enums;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class Pizzas implements Map<String, Pizza> {
     static private Map<String, Pizza> pizzas = new HashMap();
@@ -17,29 +19,30 @@ public class Pizzas implements Map<String, Pizza> {
         Pizza hawaiian = new Pizza("Hawaiian Pizza", 14.99);
 
         try {
-            deluxe.addTopping((Topping) DAO.toppings.get("Pepperoni").clone());
-            deluxe.addTopping((Topping) DAO.toppings.get("Sausage").clone());
-            deluxe.addTopping((Topping) DAO.toppings.get("Beef").clone());
-            deluxe.addTopping((Topping) DAO.toppings.get("Onions").clone());
-            deluxe.addTopping((Topping) DAO.toppings.get("Mushrooms").clone());
-            deluxe.addTopping((Topping) DAO.toppings.get("Black Olives").clone());
-            deluxe.addTopping((Topping) DAO.toppings.get("Green Peppers").clone());
+            deluxe.addTopping(DataController.searchTopping("Pepperoni"));
+            deluxe.addTopping(DataController.searchTopping("Sausage"));
+            deluxe.addTopping(DataController.searchTopping("Beef"));
+            deluxe.addTopping(DataController.searchTopping("Onions"));
+            deluxe.addTopping(DataController.searchTopping("Mushrooms"));
+            deluxe.addTopping(DataController.searchTopping("Black Olives"));
+            deluxe.addTopping(DataController.searchTopping("Green Peppers"));
 
-            veggie.addTopping((Topping) DAO.toppings.get("Onions").clone());
-            veggie.addTopping((Topping) DAO.toppings.get("Mushrooms").clone());
-            veggie.addTopping((Topping) DAO.toppings.get("Black Olives").clone());
-            veggie.addTopping((Topping) DAO.toppings.get("Green Peppers").clone());
-            veggie.addTopping((Topping) DAO.toppings.get("Spinach").clone());
-            veggie.addTopping((Topping) DAO.toppings.get("Tomato").clone());
+            veggie.addTopping(DataController.searchTopping("Onions"));
+            veggie.addTopping(DataController.searchTopping("Mushrooms"));
+            veggie.addTopping(DataController.searchTopping("Black Olives"));
+            veggie.addTopping(DataController.searchTopping("Green Peppers"));
+            veggie.addTopping(DataController.searchTopping("Spinach"));
+            veggie.addTopping(DataController.searchTopping("Tomato"));
 
-            meat.addTopping((Topping) DAO.toppings.get("Pepperoni").clone());
-            meat.addTopping((Topping) DAO.toppings.get("Sausage").clone());
-            meat.addTopping((Topping) DAO.toppings.get("Beef").clone());
-            meat.addTopping((Topping) DAO.toppings.get("Ham").clone());
-            meat.addTopping((Topping) DAO.toppings.get("Bacon").clone());
+            meat.addTopping(DataController.searchTopping("Pepperoni"));
+            meat.addTopping(DataController.searchTopping("Sausage"));
+            meat.addTopping(DataController.searchTopping("Beef"));
+            meat.addTopping(DataController.searchTopping("Ham"));
+            meat.addTopping(DataController.searchTopping("Bacon"));
 
-            hawaiian.addTopping((Topping) DAO.toppings.get("Ham").clone());
-            hawaiian.addTopping((Topping) DAO.toppings.get("Pineapple").clone());
+            hawaiian.addTopping(DataController.searchTopping("Ham"));
+
+            hawaiian.addTopping(DataController.searchTopping("Pineapple"));
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
         }

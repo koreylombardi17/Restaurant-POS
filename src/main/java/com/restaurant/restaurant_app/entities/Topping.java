@@ -4,7 +4,7 @@ import com.restaurant.restaurant_app.enums.Enums;
 
 import static com.restaurant.restaurant_app.enums.Enums.ToppingModifier.NORMAL;
 
-public class Topping extends FoodItem implements Cloneable{
+public class Topping extends FoodItem{
     private Enums.ToppingModifier modifier;
     public Topping(String name) {
         super(name);
@@ -27,8 +27,10 @@ public class Topping extends FoodItem implements Cloneable{
         this.modifier = modifier;
     }
 
-    public Object clone() throws CloneNotSupportedException
-    {
-        return super.clone();
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Topping clone = (Topping) super.clone();
+        clone.setModifier(modifier);
+        return clone;
     }
 }
