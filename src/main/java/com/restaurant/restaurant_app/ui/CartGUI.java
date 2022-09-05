@@ -4,6 +4,7 @@ import com.restaurant.restaurant_app.controllers.CartController;
 import com.restaurant.restaurant_app.entities.FoodItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -40,9 +41,7 @@ public class CartGUI {
         this.cartItemsLayout.setPrefHeight(924);
         this.cartItemsListView.setPrefHeight(900);
         this.cartController.initializeCartItemCells();
-        this.modifyBtn = new Button("MODIFY");
-        this.repeatBtn = new Button("REPEAT");
-        this.deleteBtn = new Button("DELETE");
+        initializeButtons();
         this.cartButtonsLayout = new HBox();
         this.cartButtonsLayout.setPrefHeight(24);
         this.cartButtonsLayout.getChildren().addAll(this.modifyBtn, this.repeatBtn, this.deleteBtn);
@@ -52,6 +51,15 @@ public class CartGUI {
         this.totalLabel = new Label("$0.00");
         this.totalLayout.getChildren().add(this.totalLabel);
         this.cartGUILayout.getChildren().addAll(this.cartItemsLayout, this.totalLayout);
+    }
+
+    private void initializeButtons() {
+        this.modifyBtn = new Button("MODIFY");
+        this.modifyBtn.setOnAction((ActionEvent) -> {});
+        this.repeatBtn = new Button("REPEAT");
+        this.repeatBtn.setOnAction((ActionEvent) -> {this.cartController.repeatFoodItemFromCart();});
+        this.deleteBtn = new Button("DELETE");
+        this.deleteBtn.setOnAction((ActionEvent) -> {this.cartController.deleteFoodItemFromCart();});
     }
 
     public VBox getCartGUILayout() {

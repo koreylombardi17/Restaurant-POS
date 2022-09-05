@@ -38,11 +38,31 @@ public class CartController {
                         setText(foodItem.getName() + "\t" + foodItem.getPrice());
                     }
                 }
-                setOnMouseClicked(event -> {
-                    System.out.println("cart item clicked");
-                });
+                setOnMouseClicked(event -> {});
             }
         });
+    }
+
+    public void deleteFoodItemFromCart() {
+        FoodItem selectedItem = this.cartGUI.getCartItemsListView().getSelectionModel().getSelectedItem();
+        if (!selectedItem.getFoodType().equals(Enums.FoodType.TOPPING)){
+            int index = this.cartGUI.getCartList().indexOf(selectedItem);
+            this.mainController.getCart().removeFoodItem(selectedItem);
+            this.cartGUI.getCartList().remove(index);
+            while(((this.cartGUI.getCartList().size() > index))
+                    && this.cartGUI.getCartList().get(index).getFoodType().equals(Enums.FoodType.TOPPING)) {
+                this.cartGUI.getCartList().remove(index);
+            }
+            updateTotalLabel();
+        }
+    }
+
+    public void repeatFoodItemFromCart() {
+        FoodItem selectedItem = this.cartGUI.getCartItemsListView().getSelectionModel().getSelectedItem();
+        if (!selectedItem.getFoodType().equals(Enums.FoodType.TOPPING)){
+            addFoodItemToCartListView(selectedItem);
+            updateTotalLabel();
+        }
     }
 
     private void updateTotalLabel() {
