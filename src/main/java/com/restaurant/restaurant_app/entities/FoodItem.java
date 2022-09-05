@@ -91,7 +91,9 @@ public abstract class FoodItem implements Cloneable{
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        if (price >= 0) {
+            this.price = price;
+        } else throw new IllegalArgumentException("Price must be greater or equal to 0");
     }
 
     public List<Topping> getToppings() {
