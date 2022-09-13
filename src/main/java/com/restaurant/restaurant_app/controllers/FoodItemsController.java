@@ -15,6 +15,7 @@ import java.util.Collection;
 public class FoodItemsController {
     private MainController mainController;
     private MainGUI mainGUI;
+    private ModifierPopupGUI modifierPopupGUI;
     private FoodItemsGUI foodItemsGUI;
 
     public FoodItemsController() {
@@ -39,7 +40,9 @@ public class FoodItemsController {
                             } catch (CloneNotSupportedException e) {
                                 throw new RuntimeException(e);
                             }
-                            new ModifierPopupGUI(mainController, foodItem);
+                            modifierPopupGUI.setFoodItem(foodItem);
+                            modifierPopupGUI.initializeDataForModifierPopupGUI();
+                            modifierPopupGUI.show();
                         });
                     }
                 };
@@ -80,5 +83,9 @@ public class FoodItemsController {
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
+    }
+
+    public void setModifierPopupGUI(ModifierPopupGUI modifierPopupGUI) {
+        this.modifierPopupGUI = modifierPopupGUI;
     }
 }

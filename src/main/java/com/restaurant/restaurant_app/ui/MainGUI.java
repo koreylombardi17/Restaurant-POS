@@ -1,6 +1,5 @@
 package com.restaurant.restaurant_app.ui;
 
-import com.restaurant.restaurant_app.controllers.FoodItemsController;
 import com.restaurant.restaurant_app.controllers.MainController;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -11,39 +10,13 @@ public class MainGUI {
     private final GridPane root;
     private final Stage stage;
     private MainController mainController;
-    private CartGUI cartGUI;
-    private FoodCategoriesGUI foodCategoriesGUI;
-    private FoodItemsGUI foodItemsGUI;
 
     public MainGUI(Stage stage, MainController mainController) {
         // Create main Layouts and link them to the controller
         this.stage = stage;
         this.root = new GridPane();
-
         this.mainController = mainController;
         this.mainController.setMainGUI(this);
-
-        this.cartGUI = new CartGUI(this, mainController.getCartController());
-
-        this.mainController.getCartController().setCartGUI(this.cartGUI);
-        this.mainController.getModifiersController().setCartGUI(this.cartGUI);
-
-        FoodItemsController foodItemsController = mainController.getFoodItemsController();
-        foodItemsController.setMainGUI(this);
-
-        this.foodCategoriesGUI = new FoodCategoriesGUI(this, foodItemsController, this.mainController.getFoodCategoriesController());
-        this.mainController.getFoodCategoriesController().setFoodCategoriesGUI(this.foodCategoriesGUI);
-        this.mainController.getFoodCategoriesController().setButtonsFunctionality();
-
-        this.foodItemsGUI = new FoodItemsGUI(this, foodItemsController);
-        this.foodItemsGUI.setFoodItemsLayout(this.foodItemsGUI.initializeFoodItemsLayout());
-
-        // Set root's rows and columns constraints
-        setRootsRowsConstraints();
-        setRootsColumnsConstraints();
-
-        this.root.setGridLinesVisible(true);
-        addLayoutsToRoot();
     }
 
     public GridPane getRoot() {
@@ -52,6 +25,14 @@ public class MainGUI {
 
     public Stage getStage() {
         return stage;
+    }
+
+    public void linkTogetherLayouts(CartGUI cartGUI, FoodCategoriesGUI foodCategoriesGUI, FoodItemsGUI foodItemsGUI) {
+        // Set root's rows and columns constraints
+        setRootsRowsConstraints();
+        setRootsColumnsConstraints();
+        this.root.setGridLinesVisible(true);
+        addLayoutsToRoot(cartGUI, foodCategoriesGUI, foodItemsGUI);
     }
 
     private void setRootsRowsConstraints() {
@@ -70,9 +51,9 @@ public class MainGUI {
         this.root.getColumnConstraints().addAll(column1, column2, column3);
     }
 
-    private void addLayoutsToRoot() {
-        this.root.add(this.cartGUI.getCartGUILayout(), 0, 0, 1, 1); // Row 0, Column 0
-        this.root.add(this.foodCategoriesGUI.getFoodCategoriesLayout(), 1, 0, 1, 1); // Row 0, Column 1
-        this.root.add(this.foodItemsGUI.getFoodItemsLayout(), 2, 0, 1, 1); // Row 0, Column 2
+    private void addLayoutsToRoot(CartGUI cartGUI, FoodCategoriesGUI foodCategoriesGUI, FoodItemsGUI foodItemsGUI) {
+        this.root.add(cartGUI.getCartGUILayout(), 0, 0, 1, 1); // Row 0, Column 0
+        this.root.add(foodCategoriesGUI.getFoodCategoriesLayout(), 1, 0, 1, 1); // Row 0, Column 1
+        this.root.add(foodItemsGUI.getFoodItemsLayout(), 2, 0, 1, 1); // Row 0, Column 2
     }
 }

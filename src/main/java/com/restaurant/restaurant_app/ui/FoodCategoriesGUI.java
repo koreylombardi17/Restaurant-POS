@@ -8,10 +8,6 @@ import javafx.scene.layout.VBox;
 import static com.restaurant.restaurant_app.enums.Enums.FoodType.*;
 
 public class FoodCategoriesGUI {
-    private MainGUI mainGUI;
-    private FoodItemsController foodItemsController;
-    private FoodCategoriesController foodCategoriesController;
-
     private VBox foodCategoriesLayout;
     private Button appsBtn;
     private Button wingsBtn;
@@ -23,10 +19,7 @@ public class FoodCategoriesGUI {
     private Button sidesBtn;
     private Button dessertsBtn;
 
-    public FoodCategoriesGUI(MainGUI mainGUI, FoodItemsController foodItemsController, FoodCategoriesController foodCategoriesController) {
-        this.mainGUI = mainGUI;
-        this.foodItemsController = foodItemsController;
-        this.foodCategoriesController = foodCategoriesController;
+    public FoodCategoriesGUI() {
         initializeButtonsLayout();
     }
 

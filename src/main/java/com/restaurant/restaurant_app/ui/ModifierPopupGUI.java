@@ -32,31 +32,44 @@ public class ModifierPopupGUI {
     private Button submitBtn;
     private Stage stage;
 
-    public ModifierPopupGUI(MainController mainController, FoodItem foodItem) {
+    public ModifierPopupGUI(MainController mainController) {
         this.mainController = mainController;
         this.modifiersController = mainController.getModifiersController();
         this.modifiersController.setModifierPopupGUI(this);
-        this.foodItem = foodItem;
+        this.toppingsListView = new ListView<>();
+        initializeStage(mainController);
+        initializeButtons();
+        initializeLayout();
+        initializeScene();
+    }
 
+    private void initializeScene() {
+        Scene popupScene = new Scene(this.popupVBox, 1152, 1024);
+        popupScene.getStylesheets().add("/styles.css");
+        this.stage.setScene(popupScene);
+    }
+
+    private void initializeLayout() {
+        this.popupVBox = new VBox();
+        this.popupVBox.getChildren().add(this.topBtnsHBox);
+        this.popupVBox.getChildren().add(this.toppingsListView);
+        this.popupVBox.getChildren().add(this.bottomBtnsHBox);
+    }
+
+    private void initializeStage(MainController mainController) {
         this.stage = new Stage();
         stage.setX(1920);
         stage.setY(0);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(mainController.getMainGUI().getStage());
-        initializeButtons();
+    }
 
-        this.popupVBox = new VBox();
-        this.popupVBox.getChildren().add(this.topBtnsHBox);
-
-        this.toppingsListView = new ListView<>();
+    public void initializeDataForModifierPopupGUI() {
         this.modifiersController.populateModifiables(toppingsListView, foodItem);
         this.modifiersController.initializeModifiableCells();
-        this.popupVBox.getChildren().add(this.toppingsListView);
-        this.popupVBox.getChildren().add(this.bottomBtnsHBox);
+    }
 
-        Scene popupScene = new Scene(this.popupVBox, 1152, 1024);
-        popupScene.getStylesheets().add("/styles.css");
-        stage.setScene(popupScene);
+    public void show() {
         stage.show();
     }
 
@@ -138,5 +151,9 @@ public class ModifierPopupGUI {
 
     public ListView<String> getToppingsListView() {
         return toppingsListView;
+    }
+
+    public void setFoodItem(FoodItem foodItem) {
+        this.foodItem = foodItem;
     }
 }
