@@ -14,8 +14,7 @@ public class ModifiersController {
     private CartGUI cartGUI;
     private ModifierPopupGUI modifierPopupGUI;
 
-    public ModifiersController(MainController mainController) {
-        this.mainController = mainController;
+    public ModifiersController() {
         this.cartGUI = null;
         this.modifierPopupGUI = null;
     }
@@ -89,7 +88,7 @@ public class ModifiersController {
         this.cartGUI = cartGUI;
     }
 
-    public MainController getMainController() {
-        return mainController;
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
     }
 }

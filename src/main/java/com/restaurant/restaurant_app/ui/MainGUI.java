@@ -15,11 +15,12 @@ public class MainGUI {
     private FoodCategoriesGUI foodCategoriesGUI;
     private FoodItemsGUI foodItemsGUI;
 
-    public MainGUI(Stage stage) {
+    public MainGUI(Stage stage, MainController mainController) {
         // Create main Layouts and link them to the controller
         this.stage = stage;
         this.root = new GridPane();
-        this.mainController = new MainController();
+
+        this.mainController = mainController;
         this.mainController.setMainGUI(this);
 
         this.cartGUI = new CartGUI(this, mainController.getCartController());

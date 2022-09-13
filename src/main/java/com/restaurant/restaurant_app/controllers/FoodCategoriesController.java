@@ -9,14 +9,21 @@ public class FoodCategoriesController {
     private FoodItemsController foodItemsController;
     private FoodCategoriesGUI foodCategoriesGUI;
 
-    public FoodCategoriesController(MainController mainController) {
-        this. mainController = mainController;
-        this.foodItemsController = mainController.getFoodItemsController();
+    public FoodCategoriesController(FoodItemsController foodItemsController) {
+        this.foodItemsController = foodItemsController;
         this.foodCategoriesGUI = null;
     }
 
     public void setFoodCategoriesGUI(FoodCategoriesGUI foodCategoriesGUI) {
         this.foodCategoriesGUI = foodCategoriesGUI;
+    }
+
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
+
+    public void setFoodItemsController(FoodItemsController foodItemsController) {
+        this.foodItemsController = foodItemsController;
     }
 
     public void setButtonsFunctionality(){

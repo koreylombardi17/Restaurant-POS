@@ -10,9 +10,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class DataController {
-    private final MainController mainController;
+    private MainController mainController;
 
-    public DataController(MainController mainController) {
+    public DataController() {
+
+    }
+
+    public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 

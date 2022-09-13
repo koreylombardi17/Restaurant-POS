@@ -13,11 +13,10 @@ import java.util.stream.Stream;
 
 // TODO: Implement three cart buttons functionality
 public class CartController {
-    private final MainController mainController;
+    private MainController mainController;
     private CartGUI cartGUI;
 
-    public CartController(MainController mainController) {
-        this.mainController = mainController;
+    public CartController() {
         this.cartGUI = null;
     }
 
@@ -96,7 +95,7 @@ public class CartController {
         this.cartGUI = cartGUI;
     }
 
-    public CartGUI getCartGUI() {
-        return cartGUI;
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
     }
 }

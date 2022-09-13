@@ -14,14 +14,22 @@ public class MainController {
     private ModifiersController modifiersController;
     private ShoppingCart cart;
 
-    public MainController() {
-        this.mainGUI = null;
-        this.dataController = new DataController(this);
-        this.cartController = new CartController(this);
-        this.foodItemsController = new FoodItemsController(this);
-        this.foodCategoriesController = new FoodCategoriesController(this);
-        this.modifiersController = new ModifiersController(this);
-        this.cart = new ShoppingCart();
+    public MainController(ShoppingCart cart) {
+        this.dataController = new DataController();
+        this.cartController = new CartController();
+        this.foodItemsController = new FoodItemsController();
+        this.foodCategoriesController = new FoodCategoriesController(this.foodItemsController);
+        this.modifiersController = new ModifiersController();
+        this.cart = cart;
+        linkControllers();
+    }
+
+    private void linkControllers() {
+        this.dataController.setMainController(this);
+        this.cartController.setMainController(this);
+        this.foodCategoriesController.setMainController(this);
+        this.foodItemsController.setMainController(this);
+        this.modifiersController.setMainController(this);
     }
 
     public void setMainGUI(MainGUI mainGUI) {

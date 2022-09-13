@@ -17,8 +17,7 @@ public class FoodItemsController {
     private MainGUI mainGUI;
     private FoodItemsGUI foodItemsGUI;
 
-    public FoodItemsController(MainController mainController) {
-        this.mainController = mainController;
+    public FoodItemsController() {
         this.mainGUI = null;
         this.foodItemsGUI = null;
     }
@@ -77,5 +76,9 @@ public class FoodItemsController {
 
     public void setFoodItemsGUI(FoodItemsGUI foodItemsGUI) {
         this.foodItemsGUI = foodItemsGUI;
+    }
+
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
     }
 }

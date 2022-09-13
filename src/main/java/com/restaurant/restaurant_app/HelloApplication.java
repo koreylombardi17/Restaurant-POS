@@ -1,9 +1,10 @@
 package com.restaurant.restaurant_app;
 
-import com.restaurant.restaurant_app.controllers.DataController;
+import com.restaurant.restaurant_app.controllers.*;
 import com.restaurant.restaurant_app.data.DAO;
 import com.restaurant.restaurant_app.entities.FoodItem;
 import com.restaurant.restaurant_app.entities.Pizza;
+import com.restaurant.restaurant_app.entities.ShoppingCart;
 import com.restaurant.restaurant_app.entities.Topping;
 import com.restaurant.restaurant_app.enums.Enums;
 import com.restaurant.restaurant_app.ui.MainGUI;
@@ -19,7 +20,16 @@ import java.util.List;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException, CloneNotSupportedException {
-        MainGUI mainGui = new MainGUI(stage);
+        // Shopping Cart Object
+        ShoppingCart cart = new ShoppingCart();
+
+        // Main controller object that contains all controllers
+        MainController mainController = new MainController(cart);
+
+        MainGUI mainGui = new MainGUI(stage, mainController);
+
+
+
         Scene scene = new Scene(mainGui.getRoot(), 1920, 1024);
         stage.setTitle("Restaurant App");
         stage.setScene(scene);
