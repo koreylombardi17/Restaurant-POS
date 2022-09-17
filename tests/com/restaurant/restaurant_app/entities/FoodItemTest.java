@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FoodItemTest {
 
-    private Pizza pizza;
+    private Pizza underTest;
 
     @BeforeEach
     void setUp() {
-        pizza = new Pizza("bbq pizza", 20.00);
+        underTest = new Pizza("bbq pizza", 20.00);
     }
 
     @Test
@@ -44,13 +44,18 @@ class FoodItemTest {
 
     @Test
     void setPrice() {
-        pizza.setPrice(20);
+        // When
+        underTest.setPrice(20);
+        // Then
         int expResult = 20;
-        assertEquals(expResult, pizza.getPrice());
+        assertEquals(expResult, underTest.getPrice());
+
         try {
-            pizza.setPrice(-20);
+            // When
+            underTest.setPrice(-20);
             fail("Price should never be negative. Exception should be triggered");
         } catch (IllegalArgumentException e) {
+            // Passes test if here
             System.out.println("Caught illegal argument exception: " + e.getMessage());
         } catch (Exception e) {
             fail("Wrong exception thrown for negative price");
