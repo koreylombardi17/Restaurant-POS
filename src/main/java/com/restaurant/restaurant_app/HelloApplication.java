@@ -25,7 +25,6 @@ public class HelloApplication extends Application {
         // Create CartGUI and link it to its required controllers
         CartGUI cartGUI = new CartGUI(mainGui, mainController.getCartController());
         mainController.getCartController().setCartGUI(cartGUI);
-        mainController.getModifiersController().setCartGUI(cartGUI);
 
         // Create FoodCategoriesGUI, link it to its required controllers, set button's functionality
         FoodCategoriesGUI foodCategoriesGUI = new FoodCategoriesGUI();

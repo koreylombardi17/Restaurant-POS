@@ -11,11 +11,9 @@ import javafx.util.Callback;
 
 public class ModifiersController {
     private MainController mainController;
-    private CartGUI cartGUI;
     private ModifierPopupGUI modifierPopupGUI;
 
     public ModifiersController() {
-        this.cartGUI = null;
         this.modifierPopupGUI = null;
     }
 
@@ -83,10 +81,6 @@ public class ModifiersController {
 
     public void setModifierPopupGUI(ModifierPopupGUI modifierPopupGUI) {
         this.modifierPopupGUI = modifierPopupGUI;
-    }
-
-    public void setCartGUI(CartGUI cartGUI) {
-        this.cartGUI = cartGUI;
     }
 
     public void setMainController(MainController mainController) {

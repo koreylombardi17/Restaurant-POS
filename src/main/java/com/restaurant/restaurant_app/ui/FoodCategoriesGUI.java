@@ -25,23 +25,14 @@ public class FoodCategoriesGUI {
 
     private void initializeButtonsLayout() {
         this.appsBtn = new Button("APPS");
-//        this.appsBtn.setOnAction(actionEvent -> this.foodItemsController.populateFoodItemsListView(APP));
         this.wingsBtn = new Button("WINGS");
-//        this.wingsBtn.setOnAction(actionEvent -> this.foodItemsController.populateFoodItemsListView(WINGS));
         this.saladsBtn = new Button("SALAD");
-//        this.saladsBtn.setOnAction(actionEvent -> this.foodItemsController.populateFoodItemsListView(SALAD));
         this.pizzasBtn = new Button("PIZZAS");
-//        this.pizzasBtn.setOnAction(actionEvent -> this.foodItemsController.populateFoodItemsListView(PIZZA));
         this.specialityPizzasBtn = new Button("SPECIALITY PIZZAS");
-//        this.specialityPizzasBtn.setOnAction(actionEvent -> this.foodItemsController.populateFoodItemsListView(SPECIALITY_PIZZA));
         this.subsBtn = new Button("SUBS");
-//        this.subsBtn.setOnAction(actionEvent -> this.foodItemsController.populateFoodItemsListView(SUB));
         this.pastasBtn = new Button("PASTAS");
-//        this.pastasBtn.setOnAction(actionEvent -> this.foodItemsController.populateFoodItemsListView(PASTA));
         this.sidesBtn = new Button("SIDES");
-//        this.sidesBtn.setOnAction(actionEvent -> this.foodItemsController.populateFoodItemsListView(SIDE));
         this.dessertsBtn = new Button("DESSERTS");
-//        this.dessertsBtn.setOnAction(actionEvent -> this.foodItemsController.populateFoodItemsListView(DESSERT));
         this.foodCategoriesLayout = new VBox(
                 this.appsBtn, this.wingsBtn, this.saladsBtn,
                 this.pizzasBtn, this.specialityPizzasBtn, this.subsBtn,

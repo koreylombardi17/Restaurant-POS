@@ -60,7 +60,7 @@ public class FoodItemsController {
     }
 
     private void populateFoodItemsListViewByCategory(Enums.FoodType foodType) {
-        Collection<? extends FoodItem> foodItemsByCategory = DAO.getFoodItemsByCategory(foodType);
+        Collection<? extends FoodItem> foodItemsByCategory = DataController.getFoodItemsByCategory(foodType);
         foodItemsByCategory.forEach(foodItem -> {
             this.foodItemsGUI.getFoodItemsListView().getItems().add(foodItem.getPrice() + "\t" + foodItem.getName());
         });

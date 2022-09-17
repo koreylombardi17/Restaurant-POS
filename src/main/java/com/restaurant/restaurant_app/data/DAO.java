@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class DAO {
     public static final Toppings toppings = new Toppings();
@@ -23,11 +24,4 @@ public class DAO {
             List.of(toppings.getToppings(), appetizers.getApps(), wings.getWings(),
                     salads.getSalads(), pizzas.getPizzas(), specialityPizzas.getPizzas(),
                     subs.getSubs(), pastas.getPastas(), sides.getSides(), desserts.getDesserts()));
-
-    public static Collection<? extends FoodItem> getFoodItemsByCategory(Enums.FoodType foodType) {
-        return allFoodItems.stream()
-                .filter(map -> map.values().stream().toList().get(0).getFoodType().equals(foodType))
-                .toList()
-                .get(0).values();
-    }
 }
