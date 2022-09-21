@@ -43,7 +43,7 @@ class FoodItemTest {
     }
 
     @Test
-    void setPrice() {
+    void testSetPrice() {
         // When
         underTest.setPrice(20);
         // Then
@@ -55,7 +55,7 @@ class FoodItemTest {
             underTest.setPrice(-20);
             fail("Price should never be negative. Exception should be triggered");
         } catch (IllegalArgumentException e) {
-            // Passes test if here
+            // Pass case
             System.out.println("Caught illegal argument exception: " + e.getMessage());
         } catch (Exception e) {
             fail("Wrong exception thrown for negative price");

@@ -3,10 +3,10 @@ package com.restaurant.restaurant_app.ui;
 import com.restaurant.restaurant_app.controllers.MainController;
 import com.restaurant.restaurant_app.controllers.ModifiersController;
 import com.restaurant.restaurant_app.entities.FoodItem;
+import com.restaurant.restaurant_app.ui.listviews.ModifiersItemsListView;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
@@ -17,11 +17,11 @@ import javafx.stage.Stage;
 public class ModifierPopupGUI {
     private MainController mainController;
     private ModifiersController modifiersController;
+    private ModifiersItemsListView modifiersItemsListView;
     private FoodItem foodItem;
     private HBox topBtnsHBox;
     private HBox bottomBtnsHBox;
     private VBox popupVBox;
-    private ListView<String> toppingsListView;
     private ToggleButton addBtn;
     private ToggleButton deleteBtn;
     private ToggleButton extraBtn;
@@ -36,11 +36,17 @@ public class ModifierPopupGUI {
         this.mainController = mainController;
         this.modifiersController = mainController.getModifiersController();
         this.modifiersController.setModifierPopupGUI(this);
-        this.toppingsListView = new ListView<>();
-        initializeStage(mainController);
+    }
+
+    public void initializeModifierPopupGUI() {
+        initializeStage(this.mainController);
         initializeButtons();
         initializeLayout();
         initializeScene();
+    }
+
+    public void setModifiersItemsListView(ModifiersItemsListView modifiersItemsListView) {
+        this.modifiersItemsListView = modifiersItemsListView;
     }
 
     private void initializeScene() {
@@ -52,7 +58,7 @@ public class ModifierPopupGUI {
     private void initializeLayout() {
         this.popupVBox = new VBox();
         this.popupVBox.getChildren().add(this.topBtnsHBox);
-        this.popupVBox.getChildren().add(this.toppingsListView);
+        this.popupVBox.getChildren().add(modifiersItemsListView.getModifiersListView());
         this.popupVBox.getChildren().add(this.bottomBtnsHBox);
     }
 
@@ -65,8 +71,8 @@ public class ModifierPopupGUI {
     }
 
     public void initializeDataForModifierPopupGUI() {
-        this.modifiersController.populateModifiables(toppingsListView, foodItem);
-        this.modifiersController.initializeModifiableCells();
+        this.modifiersController.populateModifiables(this.modifiersItemsListView.getModifiersListView(), foodItem);
+        this.modifiersItemsListView.initializeListViewCells();
     }
 
     public void show() {
@@ -147,10 +153,6 @@ public class ModifierPopupGUI {
 
     public Button getSubmitBtn() {
         return submitBtn;
-    }
-
-    public ListView<String> getToppingsListView() {
-        return toppingsListView;
     }
 
     public void setFoodItem(FoodItem foodItem) {

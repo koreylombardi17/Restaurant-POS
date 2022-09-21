@@ -21,7 +21,7 @@ public class DAO {
     public static final Sides sides = new Sides();
     public static final Desserts desserts = new Desserts();
     public static final List<Map<String, ? extends FoodItem>> allFoodItems = new ArrayList<>(
-            List.of(toppings.getToppings(), appetizers.getApps(), wings.getWings(),
+            List.of(appetizers.getApps(), wings.getWings(),
                     salads.getSalads(), pizzas.getPizzas(), specialityPizzas.getPizzas(),
                     subs.getSubs(), pastas.getPastas(), sides.getSides(), desserts.getDesserts()));
 }

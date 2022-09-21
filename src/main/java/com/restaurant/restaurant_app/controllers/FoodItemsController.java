@@ -6,6 +6,7 @@ import com.restaurant.restaurant_app.enums.Enums;
 import com.restaurant.restaurant_app.ui.FoodItemsGUI;
 import com.restaurant.restaurant_app.ui.MainGUI;
 import com.restaurant.restaurant_app.ui.ModifierPopupGUI;
+import com.restaurant.restaurant_app.ui.listviews.FoodItemsListView;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
@@ -17,37 +18,12 @@ public class FoodItemsController {
     private MainGUI mainGUI;
     private ModifierPopupGUI modifierPopupGUI;
     private FoodItemsGUI foodItemsGUI;
+    private FoodItemsListView foodItemsListView;
+
 
     public FoodItemsController() {
         this.mainGUI = null;
         this.foodItemsGUI = null;
-    }
-
-    public void initializeFoodItemCells() {
-        this.foodItemsGUI.getFoodItemsListView().setCellFactory(new Callback<>() {
-            @Override
-            public ListCell<String> call(ListView<String> p) {
-                return new ListCell<>() {
-                    @Override
-                    protected void updateItem(String t, boolean bln) {
-                        super.updateItem(t, bln);
-                        setText(t);
-                        setOnMouseClicked(event -> {
-                            String itemName = getText();
-                            FoodItem foodItem = null;
-                            try {
-                                foodItem = mainController.getDataController().searchFoodItem(itemName);
-                            } catch (CloneNotSupportedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            modifierPopupGUI.setFoodItem(foodItem);
-                            modifierPopupGUI.initializeDataForModifierPopupGUI();
-                            modifierPopupGUI.show();
-                        });
-                    }
-                };
-            }
-        });
     }
 
     public void populateFoodItemsListView(Enums.FoodType foodType) {
@@ -55,22 +31,26 @@ public class FoodItemsController {
         populateFoodItemsListViewByCategory(foodType);
         if (this.foodItemsGUI.getFoodItemsLayout() != null) {
             this.foodItemsGUI.getFoodItemsLayout().getChildren().clear();
-            this.foodItemsGUI.getFoodItemsLayout().getChildren().add(this.foodItemsGUI.getFoodItemsListView());
+            this.foodItemsGUI.getFoodItemsLayout().getChildren().add(this.foodItemsListView.getFoodItemsListView());
         }
     }
 
     private void populateFoodItemsListViewByCategory(Enums.FoodType foodType) {
         Collection<? extends FoodItem> foodItemsByCategory = DataController.getFoodItemsByCategory(foodType);
         foodItemsByCategory.forEach(foodItem -> {
-            this.foodItemsGUI.getFoodItemsListView().getItems().add(foodItem.getPrice() + "\t" + foodItem.getName());
+            this.foodItemsListView.getFoodItemsListView().getItems().add(foodItem.getPrice() + "\t" + foodItem.getName());
         });
     }
 
     private void clearFoodItemsListView() {
-        if (!this.foodItemsGUI.getFoodItemsListView().getItems().isEmpty()) {
-            this.foodItemsGUI.getFoodItemsListView().getItems().clear();
-            this.foodItemsGUI.getFoodItemsLayout().getChildren().remove(this.foodItemsGUI.getFoodItemsListView());
+        if (!this.foodItemsListView.getFoodItemsListView().getItems().isEmpty()) {
+            this.foodItemsListView.getFoodItemsListView().getItems().clear();
+            this.foodItemsGUI.getFoodItemsLayout().getChildren().remove(this.foodItemsListView.getFoodItemsListView());
         }
+    }
+
+    public void setFoodItemsListView(FoodItemsListView foodItemsListView) {
+        this.foodItemsListView = foodItemsListView;
     }
 
     public void setMainGUI(MainGUI mainGUI) {

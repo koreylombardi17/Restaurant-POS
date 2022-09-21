@@ -16,7 +16,7 @@
 
 ---------------  S U M M A R Y ------------
 
-Command Line: -javaagent:/Applications/IntelliJ IDEA CE.app/Contents/lib/idea_rt.jar=64286:/Applications/IntelliJ IDEA CE.app/Contents/bin -Dfile.encoding=UTF-8 --module-path=/Users/koreylombardi/Desktop/restaurant_app/target/classes:/Users/koreylombardi/.m2/repository/org/openjfx/javafx-controls/17.0.1/javafx-controls-17.0.1-mac.jar:/Users/koreylombardi/.m2/repository/org/openjfx/javafx-base/17.0.1/javafx-base-17.0.1-mac.jar:/Users/koreylombardi/.m2/repository/org/openjfx/javafx-fxml/17.0.1/javafx-fxml-17.0.1-mac.jar:/Users/koreylombardi/.m2/repository/org/openjfx/javafx-graphics/17.0.1/javafx-graphics-17.0.1-mac.jar -Djdk.module.main=com.restaurant.restaurant_app com.restaurant.restaurant_app/com.restaurant.restaurant_app.HelloApplication
+Command Line: -javaagent:/Applications/IntelliJ IDEA CE.app/Contents/lib/idea_rt.jar=64286:/Applications/IntelliJ IDEA CE.app/Contents/bin -Dfile.encoding=UTF-8 --module-path=/Users/koreylombardi/Desktop/restaurant_app/target/classes:/Users/koreylombardi/.m2/repository/org/openjfx/javafx-controls/17.0.1/javafx-controls-17.0.1-mac.jar:/Users/koreylombardi/.m2/repository/org/openjfx/javafx-base/17.0.1/javafx-base-17.0.1-mac.jar:/Users/koreylombardi/.m2/repository/org/openjfx/javafx-fxml/17.0.1/javafx-fxml-17.0.1-mac.jar:/Users/koreylombardi/.m2/repository/org/openjfx/javafx-graphics/17.0.1/javafx-graphics-17.0.1-mac.jar -Djdk.module.main=com.restaurant.restaurant_app com.restaurant.restaurant_app/com.restaurant.restaurant_app.Main
 
 Host: "MacBookPro14,2" x86_64 3100 MHz, 4 cores, 8G, Darwin 21.6.0, macOS 12.5 (21G72)
 Time: Tue Aug  9 22:25:57 2022 EDT elapsed time: 63.077896 seconds (0d 0h 1m 3s)
@@ -934,7 +934,7 @@ Dynamic libraries:
 
 VM Arguments:
 jvm_args: -javaagent:/Applications/IntelliJ IDEA CE.app/Contents/lib/idea_rt.jar=64286:/Applications/IntelliJ IDEA CE.app/Contents/bin -Dfile.encoding=UTF-8 --module-path=/Users/koreylombardi/Desktop/restaurant_app/target/classes:/Users/koreylombardi/.m2/repository/org/openjfx/javafx-controls/17.0.1/javafx-controls-17.0.1-mac.jar:/Users/koreylombardi/.m2/repository/org/openjfx/javafx-base/17.0.1/javafx-base-17.0.1-mac.jar:/Users/koreylombardi/.m2/repository/org/openjfx/javafx-fxml/17.0.1/javafx-fxml-17.0.1-mac.jar:/Users/koreylombardi/.m2/repository/org/openjfx/javafx-graphics/17.0.1/javafx-graphics-17.0.1-mac.jar -Djdk.module.main=com.restaurant.restaurant_app 
-java_command: com.restaurant.restaurant_app/com.restaurant.restaurant_app.HelloApplication
+java_command: com.restaurant.restaurant_app/com.restaurant.restaurant_app.Main
 java_class_path (initial): /Users/koreylombardi/.m2/repository/org/openjfx/javafx-controls/17.0.1/javafx-controls-17.0.1.jar:/Users/koreylombardi/.m2/repository/org/openjfx/javafx-graphics/17.0.1/javafx-graphics-17.0.1.jar:/Users/koreylombardi/.m2/repository/org/openjfx/javafx-base/17.0.1/javafx-base-17.0.1.jar:/Users/koreylombardi/.m2/repository/org/openjfx/javafx-fxml/17.0.1/javafx-fxml-17.0.1.jar
 Launcher Type: SUN_STANDARD
 
