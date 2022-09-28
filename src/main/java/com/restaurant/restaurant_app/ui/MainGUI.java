@@ -42,13 +42,13 @@ public class MainGUI {
     }
 
     private void setRootsColumnsConstraints() {
-        ColumnConstraints column1 = new ColumnConstraints();
-        column1.setPercentWidth(40);
-        ColumnConstraints column2 = new ColumnConstraints();
-        column2.setPercentWidth(20);
-        ColumnConstraints column3 = new ColumnConstraints();
-        column3.setPercentWidth(40);
-        this.root.getColumnConstraints().addAll(column1, column2, column3);
+        ColumnConstraints cartColumn = new ColumnConstraints();
+        cartColumn.setPercentWidth(40);
+        ColumnConstraints foodCategoriesColumn = new ColumnConstraints();
+        foodCategoriesColumn.setPercentWidth(20);
+        ColumnConstraints foodItemsByCategoryColumn = new ColumnConstraints();
+        foodItemsByCategoryColumn.setPercentWidth(40);
+        this.root.getColumnConstraints().addAll(cartColumn, foodCategoriesColumn, foodItemsByCategoryColumn);
     }
 
     private void addLayoutsToRoot(CartGUI cartGUI, FoodCategoriesGUI foodCategoriesGUI, FoodItemsGUI foodItemsGUI) {

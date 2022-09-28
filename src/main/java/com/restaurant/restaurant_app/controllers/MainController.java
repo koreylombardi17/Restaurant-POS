@@ -7,11 +7,13 @@ import static com.restaurant.restaurant_app.enums.Enums.FoodType.PIZZA;
 
 public class MainController {
     private MainGUI mainGUI;
+    private SceneController sceneController;
     private DataController dataController;
     private CartController cartController;
     private FoodCategoriesController foodCategoriesController;
     private FoodItemsController foodItemsController;
     private ModifiersController modifiersController;
+    private EmployeeLoginController employeeLoginController;
     private ShoppingCart cart;
 
     public MainController(ShoppingCart cart) {
@@ -20,6 +22,7 @@ public class MainController {
         this.foodItemsController = new FoodItemsController();
         this.foodCategoriesController = new FoodCategoriesController(this.foodItemsController);
         this.modifiersController = new ModifiersController();
+        this.employeeLoginController = new EmployeeLoginController();
         this.cart = cart;
         linkControllers();
     }
@@ -30,6 +33,15 @@ public class MainController {
         this.foodCategoriesController.setMainController(this);
         this.foodItemsController.setMainController(this);
         this.modifiersController.setMainController(this);
+        this.employeeLoginController.setMainController(this);
+    }
+
+    public void setSceneController(SceneController sceneController) {
+        this.sceneController = sceneController;
+    }
+
+    public SceneController getSceneController() {
+        return sceneController;
     }
 
     public void setMainGUI(MainGUI mainGUI) {
@@ -58,6 +70,10 @@ public class MainController {
 
     public ModifiersController getModifiersController() {
         return modifiersController;
+    }
+
+    public EmployeeLoginController getEmployeeLoginController() {
+        return employeeLoginController;
     }
 
     public ShoppingCart getCart() {

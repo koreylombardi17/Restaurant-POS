@@ -11,7 +11,6 @@ public class Enums {
         PASTA,
         SIDE,
         DESSERT,
-        TOPPING
     }
 
     public enum ToppingType {

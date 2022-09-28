@@ -51,7 +51,7 @@ public class ModifierPopupGUI {
 
     private void initializeScene() {
         Scene popupScene = new Scene(this.popupVBox, 1152, 1024);
-        popupScene.getStylesheets().add("/styles.css");
+        popupScene.getStylesheets().add("/modifierGUIStyles.css");
         this.stage.setScene(popupScene);
     }
 

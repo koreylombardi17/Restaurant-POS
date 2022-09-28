@@ -22,7 +22,7 @@ public class Toppings implements Map<String, Topping> {
         Topping blackOlives = new Topping("Black Olives");
         Topping spinach = new Topping("Spinach");
         Topping tomato = new Topping("Tomato");
-        Topping jalapeno = new Topping("Jalapeno Peppers");
+        Topping jalapeno = new Topping("Jalapeno");
         Topping pineapple = new Topping("Pineapple");
         toppings.put(pepperoni.getName(), pepperoni);
         toppings.put(sausage.getName(), sausage);
