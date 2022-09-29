@@ -21,7 +21,7 @@ public class Main extends Application {
         // Main controller object that contains all the other controllers
         MainController mainController = new MainController(cart);
 
-        // Controls which scene is being displayed
+        // Controls which scene gets displayed
         SceneController sceneController = new SceneController(stage, mainController);
         mainController.setSceneController(sceneController);
     }

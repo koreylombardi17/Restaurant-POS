@@ -27,7 +27,7 @@ public class MainGUI {
         return stage;
     }
 
-    public void linkTogetherLayouts(CartGUI cartGUI, FoodCategoriesGUI foodCategoriesGUI, FoodItemsGUI foodItemsGUI) {
+    public void linkSubGuisLayoutsToMainGuiLayout(CartGUI cartGUI, FoodCategoriesGUI foodCategoriesGUI, FoodItemsGUI foodItemsGUI) {
         // Set root's rows and columns constraints
         setRootsRowsConstraints();
         setRootsColumnsConstraints();

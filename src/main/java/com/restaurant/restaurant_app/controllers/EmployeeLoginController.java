@@ -4,6 +4,8 @@ import com.restaurant.restaurant_app.data.Users;
 import com.restaurant.restaurant_app.entities.User;
 import com.restaurant.restaurant_app.ui.EmployeeLoginGUI;
 
+import java.util.Optional;
+
 public class EmployeeLoginController {
     private MainController mainController;
     private EmployeeLoginGUI employeeLoginGUI;
@@ -27,6 +29,21 @@ public class EmployeeLoginController {
         this.employeeLoginGUI.getZeroBtn().setOnAction(actionEvent -> zeroButtonPressed());
         this.employeeLoginGUI.getClearBtn().setOnAction(actionEvent -> clearButtonPressed());
         this.employeeLoginGUI.getEnterBtn().setOnAction(actionEvent -> enterButtonPressed());
+    }
+
+    private void enterButtonPressed() {
+        Optional<User> loginUser = Users.loginUser(this.userIdInput);
+        loginUser.ifPresentOrElse(user -> {
+            System.out.println(user.getName() + " is logged in");
+            this.mainController.getSceneController().setMainGuiAsCurrentScene();
+        }, () -> {
+            System.out.println("User not found. Please try again");
+            this.userIdInput = "";
+        });
+    }
+
+    private void clearButtonPressed() {
+        this.userIdInput = "";
     }
 
     private void oneButtonPressed() {
@@ -68,22 +85,6 @@ public class EmployeeLoginController {
     private void zeroButtonPressed() {
         this.userIdInput += "0";
     }
-
-    private void enterButtonPressed() {
-        User loginUser = Users.loginUser(this.userIdInput);
-        if (loginUser != null) {
-            System.out.println(loginUser.getName() + " is logged in");
-            this.mainController.getSceneController().setMainGuiAsCurrentScene();
-        } else {
-            System.out.println("User not found. Please try again");
-            this.userIdInput = "";
-        }
-    }
-
-    private void clearButtonPressed() {
-        this.userIdInput = "";
-    }
-
 
     public void setEmployeeLoginGUI(EmployeeLoginGUI employeeLoginGUI) {
         this.employeeLoginGUI = employeeLoginGUI;

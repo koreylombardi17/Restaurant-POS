@@ -33,29 +33,30 @@ public class SceneController {
     }
 
     private void initializeGUIs() {
-        // Initialize app's main gui that contains sub gui's
+        instantiatePrimaryGuis();
+        instantiateSubGuis();
+        initializeListViews();
+        initializeSubGuis(); // Listviews need initialized before method can run
+        linkControllersToMainController();
+        addFunctionalityToGuis();
+        this.mainGui.linkSubGuisLayoutsToMainGuiLayout(cartGUI, foodCategoriesGUI, foodItemsGUI);
+    }
+
+    private void initializeSubGuis() {
+        this.cartGUI.initializeCartGUILayout();
+        this.modifierPopupGUI.initializeModifierPopupGUI();
+    }
+
+    private void instantiatePrimaryGuis() {
         this.mainGui = new MainGUI(stage, mainController);
-
-        // Initialize employee login gui
         this.employeeLoginGUI = new EmployeeLoginGUI(stage, mainController.getEmployeeLoginController());
+    }
 
-        // Initialize sub-gui's
+    private void instantiateSubGuis() {
         this.foodItemsGUI = new FoodItemsGUI(mainController.getFoodItemsController());
         this.cartGUI = new CartGUI(mainController.getCartController());
         this.foodCategoriesGUI = new FoodCategoriesGUI();
         this.modifierPopupGUI = new ModifierPopupGUI(mainController);
-
-        initializeListViews();
-
-        // Listviews need initialized before code below can run
-        this.cartGUI.initializeCartGUILayout();
-        this.modifierPopupGUI.initializeModifierPopupGUI();
-
-        linkControllers();
-        addFunctionalityToGuis();
-
-        // Link sub-gui's to main gui
-        this.mainGui.linkTogetherLayouts(cartGUI, foodCategoriesGUI, foodItemsGUI);
     }
 
     private void initializeListViews() {
@@ -70,7 +71,7 @@ public class SceneController {
         this.foodItemsGUI.setFoodItemsListView(foodItemsListView);
     }
 
-    private void linkControllers() {
+    private void linkControllersToMainController() {
         this.mainController.getFoodItemsController().setMainGUI(mainGui);
         this.mainController.getCartController().setCartItemsListView(cartItemsListView);
         this.mainController.getCartController().setCartGUI(cartGUI);

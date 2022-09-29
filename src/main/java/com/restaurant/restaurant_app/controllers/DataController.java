@@ -23,12 +23,15 @@ public class DataController {
     }
 
     public static FoodItem searchFoodItem(String foodListItemString) throws CloneNotSupportedException {
+        // Remove tabs from listview item text (fooditem)
         String foodItemStr = Helper.removeLeadingTabs(foodListItemString);
-        List<Map<String, ? extends FoodItem>> foodCategoryList = DAO.allFoodItems.stream()
+        // Filter list of maps to get the map that contains the fooditem
+        List<Map<String, ? extends FoodItem>> foodItemsListByCategory = DAO.allFoodItems.stream()
                 .filter(foodCategory -> foodCategory.containsKey(foodItemStr))
                 .collect(Collectors.toList());
-        FoodItem clone = (FoodItem) foodCategoryList.get(0).get(foodItemStr).clone();
-        return clone;
+        // List contains one map that contains the fooditem. Retrieve fooditem from the map
+        FoodItem foodItem = (FoodItem) foodItemsListByCategory.get(0).get(foodItemStr).clone();
+        return foodItem;
     }
 
     public static Topping searchTopping(String toppingName) throws CloneNotSupportedException {
@@ -37,16 +40,15 @@ public class DataController {
         } else return null;
     }
 
-    public static Collection<? extends FoodItem> getFoodItemsByCategory(Enums.FoodType foodType) {
+    public static List<? extends FoodItem> getFoodItemsByCategory(Enums.FoodType foodType) {
         List<Map<String, ? extends FoodItem>> listContainingOneMap = DAO.allFoodItems.stream()
                 .filter(map -> map.values()
                         .stream()
                         .toList()
                         .get(0)
                         .getFoodType().equals(foodType)
-
                 )
                 .toList();
-        return listContainingOneMap.get(0).values();
+        return listContainingOneMap.get(0).values().stream().toList();
     }
 }

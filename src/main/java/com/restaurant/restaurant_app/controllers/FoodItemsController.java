@@ -1,17 +1,13 @@
 package com.restaurant.restaurant_app.controllers;
 
-import com.restaurant.restaurant_app.data.DAO;
 import com.restaurant.restaurant_app.entities.FoodItem;
 import com.restaurant.restaurant_app.enums.Enums;
 import com.restaurant.restaurant_app.ui.FoodItemsGUI;
 import com.restaurant.restaurant_app.ui.MainGUI;
 import com.restaurant.restaurant_app.ui.ModifierPopupGUI;
 import com.restaurant.restaurant_app.ui.listviews.FoodItemsListView;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.util.Callback;
 
-import java.util.Collection;
+import java.util.List;
 
 public class FoodItemsController {
     private MainController mainController;
@@ -36,7 +32,7 @@ public class FoodItemsController {
     }
 
     private void populateFoodItemsListViewByCategory(Enums.FoodType foodType) {
-        Collection<? extends FoodItem> foodItemsByCategory = DataController.getFoodItemsByCategory(foodType);
+        List<? extends FoodItem> foodItemsByCategory = DataController.getFoodItemsByCategory(foodType);
         foodItemsByCategory.forEach(foodItem -> {
             this.foodItemsListView.getFoodItemsListView().getItems().add(foodItem.getPrice() + "\t" + foodItem.getName());
         });

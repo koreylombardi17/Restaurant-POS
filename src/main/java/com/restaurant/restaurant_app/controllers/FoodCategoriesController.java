@@ -22,10 +22,6 @@ public class FoodCategoriesController {
         this.mainController = mainController;
     }
 
-    public void setFoodItemsController(FoodItemsController foodItemsController) {
-        this.foodItemsController = foodItemsController;
-    }
-
     public void setButtonsFunctionality(){
         foodCategoriesGUI.getAppsBtn().setOnAction(actionEvent -> foodItemsController.populateFoodItemsListView(APP));
         foodCategoriesGUI.getWingsBtn().setOnAction(actionEvent -> foodItemsController.populateFoodItemsListView(WINGS));

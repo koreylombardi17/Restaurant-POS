@@ -2,10 +2,7 @@ package com.restaurant.restaurant_app.data;
 
 import com.restaurant.restaurant_app.entities.User;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Users implements Map<String, User>{
     static private Map<String, User> users = new HashMap<>();;
@@ -21,11 +18,9 @@ public class Users implements Map<String, User>{
         users.put(user4.getId(), user4);
     }
 
-    public static User loginUser(String id) {
-        User user = users.get(id);
-        if (user != null) {
-            return user;
-        } else return null;
+    public static Optional<User> loginUser(String id) {
+        Optional<User> user = Optional.ofNullable(users.get(id));
+        return user;
     }
 
     @Override

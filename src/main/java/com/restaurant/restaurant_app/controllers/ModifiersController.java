@@ -18,10 +18,8 @@ public class ModifiersController {
 
     public void populateModifiables(ListView<String> modifiablesListView, FoodItem foodItem) {
         modifiablesListView.getItems().clear();
-        if (foodItem.getToppings() != null) {
-            for (Topping topping : foodItem.getToppings()) {
-                modifiablesListView.getItems().add(topping.getName());
-            }
+        if (!foodItem.getToppings().isEmpty()) {
+            foodItem.getToppings().forEach(topping -> modifiablesListView.getItems().add(topping.getName()));
         }
     }
 

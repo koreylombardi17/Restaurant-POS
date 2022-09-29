@@ -3,8 +3,6 @@ package com.restaurant.restaurant_app.controllers;
 import com.restaurant.restaurant_app.entities.ShoppingCart;
 import com.restaurant.restaurant_app.ui.MainGUI;
 
-import static com.restaurant.restaurant_app.enums.Enums.FoodType.PIZZA;
-
 public class MainController {
     private MainGUI mainGUI;
     private SceneController sceneController;

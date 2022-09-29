@@ -57,8 +57,10 @@ public class CartController {
     }
 
     private void addToppingsToCartListView(FoodItem foodItem) {
-        Stream<Topping> toppingStream = foodItem.getToppings().stream();
-        List<Topping> toppingList = toppingStream.filter(topping -> !(topping.getToppingModifier().equals(Enums.ToppingModifier.NORMAL)))
+        // Only adds toppings to the cart listview if they have been modified
+        Stream<Topping> toppingsStream = foodItem.getToppings().stream();
+        List<Topping> toppingList = toppingsStream
+                .filter(topping -> !(topping.getToppingModifier().equals(Enums.ToppingModifier.NORMAL)))
                 .collect(Collectors.toList());
         cartItemsListView.getCartList().addAll(toppingList);
     }
